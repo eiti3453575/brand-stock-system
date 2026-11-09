@@ -5,49 +5,23 @@ dns.setServers(['8.8.8.8', '8.8.4.4']);
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
-
-
-
+const errorHandler = require('./middlewares/errorHandler');
 const app = express();
-
-
-
-
 app.use(cors());
 app.use(express.json());
 
-
-
-
 const PORT = process.env.PORT || 5000;
-// ייבוא הנתיב
 const brandRoutes = require('./Routes/BrandRoutes');
-
-
-// חיבור הנתיב לכתובת הבסיס
 app.use('/api/brands', brandRoutes);
-
-
-// נתיב לבדיקת השרת בדפדפן
 app.get('/', (req, res) => {
   res.send('Server and MongoDB are running successfully!');
 });
-// הפעלת השרת
+app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-
-
-
-// בדיקת משתנה הסביבה
 console.log('MONGO_URI exists:', !!process.env.MONGO_URI);
 
-
-
-
-// חיבור למסד הנתונים
 if (process.env.MONGO_URI) {
   mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('Connected to MongoDB Atlas'))
