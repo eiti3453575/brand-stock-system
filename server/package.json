@@ -1,25 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
-<<<<<<< HEAD
   "main": "index.js",
   "scripts": {
-=======
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node app.js",
->>>>>>> 17dfe1d (database connection)
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-<<<<<<< HEAD
   "description": "",
-=======
-  "type": "commonjs",
->>>>>>> 17dfe1d (database connection)
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^18.0.9",
