@@ -7,12 +7,15 @@ const {
   updateBrand,
   deleteBrand
 } = require('../Controllers/brandControllers');
+
+const validate = require('../middlewares/validateMiddleware');
+const { brandSchema } = require('../validations/brandValidation');
+
 router.get('/', getAllBrands);
-router.post('/', createBrand);
+router.post('/', validate(brandSchema), createBrand);
 
 router.get('/:id', getBrandById);
-router.put('/:id', updateBrand);
+router.put('/:id', validate(brandSchema), updateBrand);
 router.delete('/:id', deleteBrand);
-
 
 module.exports = router;
