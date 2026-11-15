@@ -1,9 +1,6 @@
+import Joi from 'joi';
 
-
-const Joi = require('joi');
-
-
-const productSchema = Joi.object({
+export const productSchema = Joi.object({
   name: Joi.string().trim().required().messages({
     'string.empty': 'שם המוצר הוא שדה חובה',
     'any.required': 'שם המוצר הוא שדה חובה'
@@ -26,8 +23,3 @@ const productSchema = Joi.object({
     )
     .optional()
 });
-
-
-module.exports = {
-  productSchema
-};

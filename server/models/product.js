@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
 
 const stockItemSchema = new mongoose.Schema(
   {
@@ -23,7 +22,6 @@ const stockItemSchema = new mongoose.Schema(
   { _id: false }
 );
 
-
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -41,7 +39,6 @@ const productSchema = new mongoose.Schema(
       ref: 'Brand',
       required: [true, 'חובה לשייך מוצר למותג']
     },
-
     stockItems: {
       type: [stockItemSchema],
       default: []
@@ -50,5 +47,4 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-
-module.exports = mongoose.model('Product', productSchema);
+export default mongoose.model('Product', productSchema);
