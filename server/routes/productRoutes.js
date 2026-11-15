@@ -1,25 +1,21 @@
-const express = require('express');
-const router = express.Router();
-const {
+import express from 'express';
+import {
   getAllProducts,
   getProductById,
   createProduct,
   updateProduct,
   deleteProduct
-} = require('../Controllers/ProductControllers');
+} from '../controllers/productControllers.js';
+import validate from '../middlewares/validateMiddleware.js';
+import { productSchema } from '../validations/productValidation.js';
 
-
-const validate = require('../middlewares/validateMiddleware');
-const { productSchema } = require('../validations/ProductValidation');
-
+const router = express.Router();
 
 router.get('/', getAllProducts);
 router.post('/', validate(productSchema), createProduct);
-
 
 router.get('/:id', getProductById);
 router.put('/:id', validate(productSchema), updateProduct);
 router.delete('/:id', deleteProduct);
 
-
-module.exports = router;
+export default router;

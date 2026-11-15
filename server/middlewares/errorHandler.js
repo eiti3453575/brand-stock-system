@@ -1,4 +1,4 @@
-const AppError = require('./appError'); 
+import AppError from './appError.js';
 
 const errorHandler = (err, req, res, next) => {
   let error = { ...err };
@@ -13,6 +13,7 @@ const errorHandler = (err, req, res, next) => {
   if (err.code === 11000) {
     error = new AppError('ערך כפול: רשומה עם פרטים אלו כבר קיימת במערכת', 400);
   }
+
   if (err.name === 'ValidationError') {
     const messages = Object.values(err.errors).map((val) => val.message).join(', ');
     error = new AppError(messages, 400);
@@ -24,4 +25,4 @@ const errorHandler = (err, req, res, next) => {
   });
 };
 
-module.exports = errorHandler;
+export default errorHandler;

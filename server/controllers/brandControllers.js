@@ -1,26 +1,26 @@
-const Brand = require('../models/Brand');
-const AppError = require('../middlewares/appError');
+import Brand from '../models/brand.js';
+import AppError from '../middlewares/appError.js';
 
-exports.getAllBrands = async (req, res) => {
+export const getAllBrands = async (req, res) => {
   const brands = await Brand.find();
-  res.status(200).json(brands);
+  res.json(brands);
 };
 
-exports.getBrandById = async (req, res) => {
+export const getBrandById = async (req, res) => {
   const brand = await Brand.findById(req.params.id);
   if (!brand) {
     throw new AppError('Brand not found', 404);
   }
-  res.status(200).json(brand);
+  res.json(brand);
 };
 
-exports.createBrand = async (req, res) => {
+export const createBrand = async (req, res) => {
   const newBrand = new Brand(req.body);
   const savedBrand = await newBrand.save();
   res.status(201).json(savedBrand);
 };
 
-exports.updateBrand = async (req, res) => {
+export const updateBrand = async (req, res) => {
   const updatedBrand = await Brand.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -29,13 +29,13 @@ exports.updateBrand = async (req, res) => {
   if (!updatedBrand) {
     throw new AppError('Brand not found', 404);
   }
-  res.status(200).json(updatedBrand);
+  res.json(updatedBrand);
 };
 
-exports.deleteBrand = async (req, res) => {
+export const deleteBrand = async (req, res) => {
   const deletedBrand = await Brand.findByIdAndDelete(req.params.id);
   if (!deletedBrand) {
     throw new AppError('Brand not found', 404);
   }
-  res.status(200).json({ message: 'Brand deleted successfully' });
+  res.status(204).send();
 };

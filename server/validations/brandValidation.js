@@ -1,6 +1,6 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
-const brandSchema = Joi.object({
+export const brandSchema = Joi.object({
   name: Joi.string().trim().required().messages({
     'string.empty': 'שם המותג הוא שדה חובה',
     'any.required': 'שם המותג הוא שדה חובה'
@@ -8,7 +8,3 @@ const brandSchema = Joi.object({
   description: Joi.string().trim().optional().allow(''),
   country: Joi.string().trim().optional().allow('')
 });
-
-module.exports = {
-  brandSchema
-};
