@@ -16,6 +16,8 @@ app.use('/api/brands', brandRoutes);
 app.get('/', (req, res) => {
   res.send('Server and MongoDB are running successfully!');
 });
+const productRoutes = require('./Routes/ProductRoutes');
+app.use('/api/products', productRoutes);
 app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
