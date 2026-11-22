@@ -24,3 +24,25 @@ export const register = async (req, res) => {
     token
   });
 };
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+
+
+  const user = await User.findOne({ email });
+  if (!user || !(await user.comparePassword(password))) {
+    throw new AppError('אימייל או סיסמה שגויים', 401);
+  }
+
+
+  const token = generateToken(user._id);
+
+
+  res.json({
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email
+    },
+    token
+  });
+};
