@@ -5,6 +5,7 @@ import cors from 'cors';
 import errorHandler from './middlewares/errorHandler.js';
 import brandRoutes from './routes/brandRoutes.js';
 import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 dns.setDefaultResultOrder('ipv4first');
 dns.setServers(['8.8.8.8', '8.8.4.4']);
@@ -12,6 +13,7 @@ dns.setServers(['8.8.8.8', '8.8.4.4']);
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use('/api/users', userRoutes);
 
 const PORT = process.env.PORT || 5000;
 
